@@ -11,7 +11,7 @@ Switch the keyboard to Windows via Adjust+W, Mac via Adjust+M
 
 NOTE: I do NOT use the persistent set default layer, so this keymap wont wear out the EEPROM. Although 100K writes is a lot, so it could be used.
 
-## A UK international layout that uses mnemonic keys to make it easy to remember
+## A UK keyboard layout that uses mnemonic keys to make it easy to remember
 I found that remembering how to produce the UK British Pound hard on the planck, so I mapped it to Oryx key + P for Pound.
 I then found that I could do the same for 'at' symbol (Oxyx + A for At).
 

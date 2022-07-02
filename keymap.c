@@ -65,7 +65,7 @@
 
 // Key overrides:
 const key_override_t single_quote_key_override =
-    ko_make_basic(MOD_MASK_SHIFT, KC_QUOTE, KC_DQUOTE);  // Shift ' is " (insteasd of @)
+    ko_make_basic(MOD_MASK_SHIFT, KC_QUOTE, UK_DQUO);  // Shift ' is " (insteasd of @)
 const key_override_t two_key_override =
     ko_make_basic(MOD_MASK_SHIFT, KC_2, KC_AT); // Shift 2 is @ instead of "
 
@@ -80,19 +80,17 @@ const key_override_t **key_overrides = (const key_override_t*[]){
 enum planck_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
   ST_MACRO_0,
-  WINDOWS,
-  MAC,
-  WIN_GBP,
-  MAC_GBP,
+  WINDOWS_MODE,
+  MAC_MODE,
 };
 
 
 // Note: To stop odd bugs, always keep Adjust last in list of layers.
 enum planck_layers {
-  _BASE,
-  _LOWER,
-  _RAISE,
-  _ORYX,
+  _MBASE,
+  _MLOWER,
+  _MRAISE,
+  _MORYX,
   _WBASE,
   _WLOWER,
   _WRAISE,
@@ -101,9 +99,9 @@ enum planck_layers {
 };
 
 // Mac specific layers:
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#define ORYX MO(_ORYX)
+#define MLOWER MO(_MLOWER)
+#define MRAISE MO(_MRAISE)
+#define MORYX MO(_MORYX)
 
 // Windows specific layers:
 #define WLOWER MO(_WLOWER)
@@ -111,21 +109,21 @@ enum planck_layers {
 #define WORYX MO(_WORYX)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT_planck_grid(
+  [_MBASE] = LAYOUT_planck_grid(
     KC_ESCAPE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSPACE,
     KC_TAB,         KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_H,           KC_J,           KC_K,           KC_L,           KC_QUOTE,       KC_SCOLON,
     MT(MOD_LSFT, KC_CAPSLOCK),KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_UP,          KC_ENTER,
-    ORYX,          KC_LCTRL,       KC_LALT,        KC_LGUI,        LOWER,          KC_SPACE,       KC_NO,          RAISE,          KC_SLASH,       KC_LEFT,        KC_DOWN,        KC_RIGHT
+    MORYX,          KC_LCTRL,       KC_LALT,        KC_LGUI,        MLOWER,          KC_SPACE,       KC_NO,          MRAISE,          KC_SLASH,       KC_LEFT,        KC_DOWN,        KC_RIGHT
   ),
 
-  [_LOWER] = LAYOUT_planck_grid(
-    KC_TILD,        KC_EXLM,        UK_AT,          KC_HASH,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,        KC_TRANSPARENT,
+  [_MLOWER] = LAYOUT_planck_grid(
+    UK_TILD,        KC_EXLM,        UK_AT,          KC_HASH,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,        KC_TRANSPARENT,
     KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MINUS,       KC_PLUS,        KC_LCBR,        KC_RCBR,        KC_PIPE,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_EQUAL,       KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP,        KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_UNDS,        KC_NO,          KC_TRANSPARENT, KC_BSLASH,      KC_HOME,        KC_PGDOWN,      KC_END
   ),
 
-  [_RAISE] = LAYOUT_planck_grid(
+  [_MRAISE] = LAYOUT_planck_grid(
     KC_GRAVE,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT,
     KC_DELETE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_F6,          KC_TRANSPARENT, KC_TRANSPARENT, KC_LBRACKET,    KC_RBRACKET,    KC_TRANSPARENT,
     KC_TRANSPARENT, KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_F12,         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_AUDIO_VOL_UP,KC_TRANSPARENT,
@@ -133,15 +131,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_ADJUST] = LAYOUT_planck_grid(
-    RESET,          KC_TRANSPARENT, WINDOWS,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_0,     KC_TRANSPARENT,
+    RESET,          KC_TRANSPARENT, WINDOWS_MODE,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_0,     KC_TRANSPARENT,
     KC_DELETE,      RGB_MOD,        AU_ON,          AU_OFF,         AU_TOG,         KC_TRANSPARENT, KC_HASH,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_TRANSPARENT, MU_ON,          MU_OFF,         MU_TOG,         KC_TRANSPARENT, KC_TRANSPARENT, MAC,            KC_TRANSPARENT, KC_TRANSPARENT, RGB_VAI,        RGB_TOG,
+    KC_TRANSPARENT, KC_TRANSPARENT, MU_ON,          MU_OFF,         MU_TOG,         KC_TRANSPARENT, KC_TRANSPARENT, MAC_MODE,            KC_TRANSPARENT, KC_TRANSPARENT, RGB_VAI,        RGB_TOG,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, RGB_HUD,        RGB_VAD,        RGB_HUI
   ),
 
-  [_ORYX] = LAYOUT_planck_grid(
+  [_MORYX] = LAYOUT_planck_grid(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_UK_MAC_PND,  KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_AT,          KC_TRANSPARENT, KC_DLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_HASH,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_AT,          KC_TRANSPARENT, KC_DLR,         KC_TRANSPARENT, KC_TRANSPARENT, UK_HASH,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -154,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_WLOWER] = LAYOUT_planck_grid(
-    KC_TILD,        KC_EXLM,        UK_AT,          KC_HASH,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,        KC_TRANSPARENT,
+    UK_TILD,        KC_EXLM,        UK_AT,          KC_HASH,        KC_DLR,         KC_PERC,        KC_CIRC,        KC_AMPR,        KC_ASTR,        KC_LPRN,        KC_RPRN,        KC_TRANSPARENT,
     KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MINUS,       KC_PLUS,        KC_LCBR,        KC_RCBR,        KC_PIPE,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_EQUAL,       KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP,        KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_UNDS,        KC_NO,          KC_TRANSPARENT, KC_BSLASH,      KC_HOME,        KC_PGDOWN,      KC_END
@@ -169,7 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_WORYX] = LAYOUT_planck_grid(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, UK_PND,     KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_AT,          KC_TRANSPARENT, KC_DLR,         KC_TRANSPARENT, KC_TRANSPARENT, KC_HASH,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_AT,          KC_TRANSPARENT, KC_DLR,         KC_TRANSPARENT, KC_TRANSPARENT, UK_HASH,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -179,7 +177,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case WINDOWS:
+    case WINDOWS_MODE:
     if (record->event.pressed) {
       print("Entering windows mode.");
       SEND_STRING("Entering Windows mode.");
@@ -187,36 +185,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       default_layer_set(1UL<<_WBASE);
     }
     break;
-    case MAC:
+    case MAC_MODE:
     if (record->event.pressed) {
       print("Entering mac mode.");
       SEND_STRING("Entering Mac mode.");
       // Make default layer the mac base layer, which will only move to mac layers.
-      default_layer_set(1UL<<_BASE);
+      default_layer_set(1UL<<_MBASE);
       // Could used the persistant_default_layer_set() that write to eeprom, but didnt want to wear out.
 
     }
     break;
     case ST_MACRO_0:
     if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_3) ));
-
-    }
-    break;
-    case WIN_GBP:
-    if (record->event.pressed) {
-      print("WIN_GBP");
-      SEND_STRING("WIN_GBP");
-      // Alt + 0163 = Britch poound symbol on Windows:
-      SEND_STRING(SS_LALT(SS_TAP(X_0) SS_TAP(X_1) SS_TAP(X_6) SS_TAP(X_3)));
-
-    }
-    break;
-    case MAC_GBP:
-    if (record->event.pressed) {
-      print("MAC_GBP");
-      SEND_STRING("MAC_GBP");
-      // Mac GBP symbol is Alt + 3
       SEND_STRING(SS_LALT(SS_TAP(X_3) ));
 
     }
@@ -239,7 +219,7 @@ uint16_t muse_tempo = 50;
 
 void encoder_update(bool clockwise) {
     if (muse_mode) {
-        if (IS_LAYER_ON(_RAISE)) {
+        if (IS_LAYER_ON(_MRAISE)) {
             if (clockwise) {
                 muse_offset++;
             } else {
@@ -291,8 +271,10 @@ void matrix_scan_user(void) {
 
 bool music_mask_user(uint16_t keycode) {
     switch (keycode) {
-    case RAISE:
-    case LOWER:
+    case WRAISE:
+    case WLOWER:
+    case MRAISE:
+    case MLOWER:
         return false;
     default:
         return true;
@@ -301,19 +283,33 @@ bool music_mask_user(uint16_t keycode) {
 #endif
 
 uint32_t layer_state_set_user(uint32_t state) {
-    // The following is saying if you press lower and raise at same time, goto adjust layer:
+    // In this function we make the Adjust layer work by checking if user has both the lower and raise layers active
+    // (e.g. they are pressing lower and raise at same time), then goto adjust layer:
 
-    // update_tri_layer_state cant be used when we are going to adjust from two sets of layers (Windows and Mac)
-    //return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    // So standard QMK keymaps call the update_tri_layer_state() method, which is fine if we only goto adjust
+    // with two layers being active at same time, however in this keymap, we have two versions of raise and two
+    // of lower (one for each OS), so it cant be used.
+    //return update_tri_layer_state(state, _MLOWER, _MRAISE, _ADJUST);
 
-    // So the workaround is to check the layers active manually:
-    if ( ( layer_state_cmp(state, _LOWER) && layer_state_cmp(state, _RAISE ) ) ||
+    // So the workaround is to check the two sets of layers active manually:
+    if ( ( layer_state_cmp(state, _MLOWER) && layer_state_cmp(state, _MRAISE ) ) ||
          ( layer_state_cmp(state, _WLOWER) && layer_state_cmp(state, _WRAISE ) ) ) {
         return state | (1UL<<_ADJUST);
-      } else {
+    } else {
         return state & ~(1UL<<_ADJUST);
-      }
+    }
 
+}
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  //debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
+
+  // Lets default to Windows base layer by default on startup:
+  default_layer_set(1UL<<_WBASE);
 }
 
 

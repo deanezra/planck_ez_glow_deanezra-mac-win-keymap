@@ -29,17 +29,23 @@ Note: firmware21 is the latest in ZSA's fork of QMK firmware as of 02/07/2022.
 
 Answer yes to the question when asked if you want to clone the sub dirs.
 
-3. Copy the deanezra-mac-win dir into the ZSA fork of QMK firmware under the following directory:
+3. Now cd into the keyboards\planck\ez\glow\keymaps\ directory and git clone this repo into it:
 
-keyboards\planck\ez\glow\keymaps\
+git clone https://github.com/deanezra/planck_ez_glow_deanezra-mac-win-keymap.git
+
+You shoyld end up with a folder called 'planck_ez_glow_deanezra-mac-win-keymap'
 
 4. Compile keymap using following command from the root dir of the ZDA QMK firmware directory:
 
-make planck/ez/glow:deanezra-mac-win
+make planck/ez/glow:planck_ez_glow_deanezra-mac-win-keymap
 
 or
 
-qmk compile -kb planck/ez/glow -km deanezra-mac-win
+qmk compile -kb planck/ez/glow -km planck_ez_glow_deanezra-mac-win-keymap
+
+5. Using QMK toolbar select and flash the resulting bin file to your planck ez glow keyboard. The bin file is located under:
+
+<QMK root dir>/.build/planck_ez_glow_deanezra-mac-win-keyma.bin
 
 # Would like to do/bugs:
 

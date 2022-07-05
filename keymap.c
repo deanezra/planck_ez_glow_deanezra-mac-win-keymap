@@ -61,7 +61,7 @@
 #define SE_SECT_MAC ALGR(KC_6)
 
 // Apple Mac specific UK key codes:
-#define KC_UK_MAC_PND LALT(KC_3)
+#define KC_UK_MAC_PND LSFT(UK_3)
 
 // Key overrides:
 const key_override_t single_quote_key_override =
